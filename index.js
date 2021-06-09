@@ -1,7 +1,10 @@
-const { differenceInDays, format } = require('date-fns');
 const colors = require('colors/safe');
 const Table = require('cli-table3');
-const { readTodosSync } = require('@ember-template-lint/todo-utils');
+const {
+  readTodosSync,
+  isExpired,
+  getDatePart,
+} = require('@ember-template-lint/todo-utils');
 
 class TodoSummaryFormatter {
   constructor(options = {}) {
@@ -11,57 +14,72 @@ class TodoSummaryFormatter {
 
   print(
     results,
+    todoInfo,
     todos = this._readTodos(this.options.workingDir),
-    today = new Date()
+    today = getDatePart().getTime()
   ) {
     let sorted = todos
       .sort((first, second) => {
         return first.errorDate - second.errorDate;
       })
       .map((todo) => {
-        let errorDate = new Date(todo.errorDate);
-
         return {
           ruleId: todo.ruleId,
           filePath: todo.filePath,
-          dueIn: differenceInDays(errorDate, today),
-          date: format(errorDate, 'P'),
-          isExpired: errorDate < today,
+          dueIn: daysBetween(today, todo.errorDate),
+          date: new Date(todo.errorDate).toISOString().split('T')[0],
+          isExpired: isExpired(todo.errorDate),
         };
       });
 
     this.console.log(`Lint Todos (${sorted.length} found)`);
-    this.console.log('');
-    this.console.log(
-      `${
-        sorted.filter((todo) => todo.isExpired).length
-      } are currently past their due date`
-    );
 
-    let table = new Table({
-      head: ['RuleID', 'filePath', 'Due Date', 'Due in'],
-      style: {
-        head: ['brightBlue'],
-        border: ['gray'],
-      },
-    });
+    if (sorted.length > 0) {
+      this.console.log('');
+      this.console.log(
+        `${
+          sorted.filter((todo) => todo.isExpired).length
+        } todos are currently past their due date`
+      );
 
-    for (let todo of sorted) {
-      let dueInDays = `${todo.dueIn} days`;
+      let table = new Table({
+        head: ['RuleID', 'File Path', 'Due Date', 'Due in'],
+        style: {
+          head: ['brightBlue'],
+          border: ['gray'],
+        },
+      });
 
-      if (todo.isExpired) {
-        dueInDays = colors.red(dueInDays);
+      for (let todo of sorted) {
+        let dueInDays = `${todo.dueIn} days`;
+
+        if (todo.isExpired) {
+          dueInDays = colors.red(dueInDays);
+        }
+
+        table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);
       }
 
-      table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);
+      this.console.log(table.toString());
     }
-
-    this.console.log(table.toString());
   }
 
   _readTodos(baseDir) {
     return [...readTodosSync(baseDir).values()];
   }
+}
+
+function treatAsUTC(date) {
+  let result = new Date(date);
+  result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+  return result;
+}
+
+function daysBetween(startDate, endDate) {
+  let millisecondsPerDay = 24 * 60 * 60 * 1000;
+  return Math.trunc(
+    (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay
+  );
 }
 
 module.exports = TodoSummaryFormatter;
