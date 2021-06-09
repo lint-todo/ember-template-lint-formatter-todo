@@ -15,5 +15,5 @@ yarn add @scalvert/ember-template-lint-formatter-todo
 ## Usage
 
 ```shell
-ember-template-lint -format @scalvert/ember-template-lint-formatter-todo
+ember-template-lint --format @scalvert/ember-template-lint-formatter-todo
 ```
