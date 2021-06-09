@@ -6,8 +6,8 @@
     "line": 1,
     "column": 0,
     "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "warnDate": 1617321600000,
+    "errorDate": 1619913600000
   },
   {
     "engine": "ember-template-lint",
@@ -16,8 +16,8 @@
     "line": 3,
     "column": 40,
     "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "warnDate": 1622505600000,
+    "errorDate": 1623110400000
   },
   {
     "engine": "ember-template-lint",
