@@ -1,0 +1,19 @@
+{
+  "name": "@scalvert/ember-template-lint-formatter-todo",
+  "version": "1.0.0",
+  "description": "An Ember Template Lint formatter for todos",
+  "main": "index.js",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@ember-template-lint/todo-utils": "^8.1.0",
+    "cli-table3": "^0.6.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^10.0.0",
+    "jest": "^27.0.4"
+  }
+}
