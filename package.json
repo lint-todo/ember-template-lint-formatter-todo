@@ -2,9 +2,13 @@
   "name": "@scalvert/ember-template-lint-formatter-todo",
   "version": "1.0.0",
   "description": "An Ember Template Lint formatter for todos",
-  "main": "index.js",
-  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:scalvert/ember-template-lint-formatter-todo.git"
+  },
   "license": "MIT",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
@@ -17,6 +21,26 @@
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "jest": "^27.0.4",
+    "release-it": "^14.2.1",
+    "release-it-lerna-changelog": "^3.1.0",
     "strip-ansi": "6"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
   }
 }
