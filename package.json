@@ -4,7 +4,7 @@
   "description": "An Ember Template Lint formatter for todos",
   "repository": {
     "type": "git",
-    "url": "git@github.com:scalvert/ember-template-lint-formatter-todo.git"
+    "url": "git+ssh://git@github.com/scalvert/ember-template-lint-formatter-todo.git"
   },
   "license": "MIT",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
@@ -42,5 +42,13 @@
       "release": true,
       "tokenRef": "GITHUB_AUTH"
     }
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/scalvert/ember-template-lint-formatter-todo/issues"
+  },
+  "homepage": "https://github.com/scalvert/ember-template-lint-formatter-todo#readme",
+  "keywords": [
+    "ember-template-lint",
+    "ember-template-lint-formatter"
+  ]
 }
