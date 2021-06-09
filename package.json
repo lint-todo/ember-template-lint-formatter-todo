@@ -16,14 +16,14 @@
     "@ember-template-lint/todo-utils": "^8.1.0",
     "cli-table3": "^0.6.0",
     "colors": "^1.4.0",
-    "date-fns": "^2.22.1"
+    "date-fns": "^2.22.1",
+    "strip-ansi": "6"
   },
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "jest": "^27.0.4",
     "release-it": "^14.2.1",
-    "release-it-lerna-changelog": "^3.1.0",
-    "strip-ansi": "6"
+    "release-it-lerna-changelog": "^3.1.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
