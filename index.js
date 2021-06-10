@@ -28,7 +28,8 @@ class TodoSummaryFormatter {
           filePath: todo.filePath,
           dueIn: daysBetween(today, todo.errorDate),
           date: new Date(todo.errorDate).toISOString().split('T')[0],
-          isExpired: isExpired(todo.errorDate),
+          isError: isExpired(todo.errorDate),
+          isWarn: isExpired(todo.warnDate),
         };
       });
 
@@ -38,7 +39,7 @@ class TodoSummaryFormatter {
       this.console.log('');
       this.console.log(
         `${
-          sorted.filter((todo) => todo.isExpired).length
+          sorted.filter((todo) => todo.isError).length
         } todos are currently past their due date`
       );
 
@@ -53,8 +54,10 @@ class TodoSummaryFormatter {
       for (let todo of sorted) {
         let dueInDays = `${todo.dueIn} days`;
 
-        if (todo.isExpired) {
+        if (todo.isError) {
           dueInDays = colors.red(dueInDays);
+        } else if (todo.isWarn) {
+          dueInDays = colors.yellow(dueInDays);
         }
 
         table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);

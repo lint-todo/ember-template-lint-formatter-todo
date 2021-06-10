@@ -294,10 +294,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@ember-template-lint/todo-utils@^9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@ember-template-lint/todo-utils/-/todo-utils-9.0.0.tgz#9166f7853117d6ea3ae747c2c91ea82d291e5dd5"
-  integrity sha512-ZLk2v2BTtrJhaCYzEL4tDcbKBbJuAK3KVZ8iHX50D2VOA1KCUfWIN6qN+eg/rjquSGOhCWFW10ouX7MFdgFemw==
+"@ember-template-lint/todo-utils@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@ember-template-lint/todo-utils/-/todo-utils-9.0.1.tgz#6ac67be567f58aab24302d992214e667eb34d4a0"
+  integrity sha512-T9hF4l4VKFDZ/sEsHBPgw1P3yvqKthj9yOIsXjZkOWPpHja/3QpBLrUZ9kJ6jN7XqDAymC4ytpL8ftW2OVTGWQ==
   dependencies:
     "@types/eslint" "^7.2.12"
     fs-extra "^9.1.0"

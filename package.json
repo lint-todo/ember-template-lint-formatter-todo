@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ember-template-lint/todo-utils": "^9.0.0",
+    "@ember-template-lint/todo-utils": "^9.0.1",
     "cli-table3": "^0.6.0",
     "colors": "^1.4.0",
     "strip-ansi": "6"
