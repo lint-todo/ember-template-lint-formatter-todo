@@ -1,7 +1,12 @@
-const { differenceInDays, format } = require('date-fns');
 const colors = require('colors/safe');
 const Table = require('cli-table3');
-const { readTodosSync } = require('@ember-template-lint/todo-utils');
+const {
+  readTodosSync,
+  isExpired,
+  getDatePart,
+  differenceInDays,
+  format,
+} = require('@ember-template-lint/todo-utils');
 
 class TodoSummaryFormatter {
   constructor(options = {}) {
@@ -11,52 +16,57 @@ class TodoSummaryFormatter {
 
   print(
     results,
+    todoInfo,
     todos = this._readTodos(this.options.workingDir),
-    today = new Date()
+    today = getDatePart()
   ) {
     let sorted = todos
       .sort((first, second) => {
         return first.errorDate - second.errorDate;
       })
       .map((todo) => {
-        let errorDate = new Date(todo.errorDate);
-
         return {
           ruleId: todo.ruleId,
           filePath: todo.filePath,
-          dueIn: differenceInDays(errorDate, today),
-          date: format(errorDate, 'P'),
-          isExpired: errorDate < today,
+          dueIn: differenceInDays(today, new Date(todo.errorDate)),
+          date: format(todo.errorDate),
+          isError: isExpired(todo.errorDate),
+          isWarn: isExpired(todo.warnDate),
         };
       });
 
     this.console.log(`Lint Todos (${sorted.length} found)`);
-    this.console.log('');
-    this.console.log(
-      `${
-        sorted.filter((todo) => todo.isExpired).length
-      } are currently past their due date`
-    );
 
-    let table = new Table({
-      head: ['RuleID', 'filePath', 'Due Date', 'Due in'],
-      style: {
-        head: ['brightBlue'],
-        border: ['gray'],
-      },
-    });
+    if (sorted.length > 0) {
+      this.console.log('');
+      this.console.log(
+        `${
+          sorted.filter((todo) => todo.isError).length
+        } todos are currently past their due date`
+      );
 
-    for (let todo of sorted) {
-      let dueInDays = `${todo.dueIn} days`;
+      let table = new Table({
+        head: ['RuleID', 'File Path', 'Due Date', 'Due in'],
+        style: {
+          head: ['brightBlue'],
+          border: ['gray'],
+        },
+      });
 
-      if (todo.isExpired) {
-        dueInDays = colors.red(dueInDays);
+      for (let todo of sorted) {
+        let dueInDays = `${todo.dueIn} days`;
+
+        if (todo.isError) {
+          dueInDays = colors.red(dueInDays);
+        } else if (todo.isWarn) {
+          dueInDays = colors.yellow(dueInDays);
+        }
+
+        table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);
       }
 
-      table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);
+      this.console.log(table.toString());
     }
-
-    this.console.log(table.toString());
   }
 
   _readTodos(baseDir) {

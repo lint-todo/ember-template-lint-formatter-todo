@@ -13,10 +13,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ember-template-lint/todo-utils": "^8.1.0",
+    "@ember-template-lint/todo-utils": "^9.1.1",
     "cli-table3": "^0.6.0",
     "colors": "^1.4.0",
-    "date-fns": "^2.22.1",
     "strip-ansi": "6"
   },
   "devDependencies": {
@@ -51,5 +50,9 @@
   "keywords": [
     "ember-template-lint",
     "ember-template-lint-formatter"
-  ]
+  ],
+  "volta": {
+    "node": "12.22.1",
+    "yarn": "1.22.10"
+  }
 }
