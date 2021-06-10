@@ -4,6 +4,8 @@ const {
   readTodosSync,
   isExpired,
   getDatePart,
+  differenceInDays,
+  format,
 } = require('@ember-template-lint/todo-utils');
 
 class TodoSummaryFormatter {
@@ -16,7 +18,7 @@ class TodoSummaryFormatter {
     results,
     todoInfo,
     todos = this._readTodos(this.options.workingDir),
-    today = getDatePart().getTime()
+    today = getDatePart()
   ) {
     let sorted = todos
       .sort((first, second) => {
@@ -26,8 +28,8 @@ class TodoSummaryFormatter {
         return {
           ruleId: todo.ruleId,
           filePath: todo.filePath,
-          dueIn: daysBetween(today, todo.errorDate),
-          date: new Date(todo.errorDate).toISOString().split('T')[0],
+          dueIn: differenceInDays(today, new Date(todo.errorDate)),
+          date: format(todo.errorDate),
           isError: isExpired(todo.errorDate),
           isWarn: isExpired(todo.warnDate),
         };
@@ -70,19 +72,6 @@ class TodoSummaryFormatter {
   _readTodos(baseDir) {
     return [...readTodosSync(baseDir).values()];
   }
-}
-
-function treatAsUTC(date) {
-  let result = new Date(date);
-  result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
-  return result;
-}
-
-function daysBetween(startDate, endDate) {
-  let millisecondsPerDay = 24 * 60 * 60 * 1000;
-  return Math.trunc(
-    (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay
-  );
 }
 
 module.exports = TodoSummaryFormatter;

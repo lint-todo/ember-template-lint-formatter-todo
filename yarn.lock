@@ -294,15 +294,15 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@ember-template-lint/todo-utils@^9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@ember-template-lint/todo-utils/-/todo-utils-9.0.1.tgz#6ac67be567f58aab24302d992214e667eb34d4a0"
-  integrity sha512-T9hF4l4VKFDZ/sEsHBPgw1P3yvqKthj9yOIsXjZkOWPpHja/3QpBLrUZ9kJ6jN7XqDAymC4ytpL8ftW2OVTGWQ==
+"@ember-template-lint/todo-utils@^9.1.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@ember-template-lint/todo-utils/-/todo-utils-9.1.0.tgz#90880d66e9343087a3f4277d2c5f07321bdf2c8f"
+  integrity sha512-+EsB5Tec/Yka7toZi+0CQloaN6CTarNlm6AfIOWHMJkU2mf1LDy7ZIGai3X1eXBlRS74KWOrvGUV74MuSO2v4g==
   dependencies:
     "@types/eslint" "^7.2.12"
     fs-extra "^9.1.0"
     slash "^3.0.0"
-    tslib "^2.1.0"
+    tslib "^2.2.0"
 
 "@iarna/toml@2.2.5":
   version "2.2.5"
@@ -4498,7 +4498,7 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.1.0:
+tslib@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==

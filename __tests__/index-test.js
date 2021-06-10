@@ -26,31 +26,33 @@ describe('Todo Formatter', () => {
     let formatter = new TodoSummaryFormatter({
       console: mockConsole,
     });
-    let today = getDatePart(new Date('2021-06-09')).getTime();
+    let today = getDatePart(new Date('2021-06-09'));
 
     formatter.print({}, {}, todos, today);
 
     expect(mockConsole.toString()).toMatchInlineSnapshot(`
-"Lint Todos (7 found)
+"Lint Todos (8 found)
 
-2 todos are currently past their due date
-┌──────────────────┬───────────────────────────────────────────────────┬────────────┬──────────┐
-│ RuleID           │ File Path                                         │ Due Date   │ Due in   │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-yield-only    │ addon/templates/just-yield.hbs                    │ 2021-05-02 │ -37 days │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-06-08 │ 0 days   │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-action        │ addon/templates/components/button-toggle.hbs      │ 2021-08-02 │ 55 days  │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-08-02 │ 55 days  │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-08-02 │ 55 days  │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-08-02 │ 55 days  │
-├──────────────────┼───────────────────────────────────────────────────┼────────────┼──────────┤
-│ no-implicit-this │ addon/templates/components/truncate-multiline.hbs │ 2021-08-02 │ 55 days  │
-└──────────────────┴───────────────────────────────────────────────────┴────────────┴──────────┘"
+7 todos are currently past their due date
+┌──────────────────┬───────────────────────────────────────────────────┬────────────┬───────────┐
+│ RuleID           │ File Path                                         │ Due Date   │ Due in    │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-action        │ addon/templates/components/button-toggle.hbs      │ 2021-03-01 │ -100 days │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-03-01 │ -100 days │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-03-01 │ -100 days │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-03-01 │ -100 days │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-implicit-this │ addon/templates/components/truncate-multiline.hbs │ 2021-03-01 │ -100 days │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-yield-only    │ addon/templates/just-yield.hbs                    │ 2021-04-10 │ -60 days  │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-05-10 │ -30 days  │
+├──────────────────┼───────────────────────────────────────────────────┼────────────┼───────────┤
+│ no-implicit-this │ addon/templates/components/button-toggle.hbs      │ 2021-07-10 │ 31 days   │
+└──────────────────┴───────────────────────────────────────────────────┴────────────┴───────────┘"
 `);
   });
 });

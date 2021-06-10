@@ -5,9 +5,9 @@
     "ruleId": "no-yield-only",
     "line": 1,
     "column": 0,
-    "createdDate": 1622703600000,
-    "warnDate": 1617321600000,
-    "errorDate": 1619913600000
+    "createdDate": 1609459200000,
+    "warnDate": 1617235200000,
+    "errorDate": 1618012800000
   },
   {
     "engine": "ember-template-lint",
@@ -15,9 +15,9 @@
     "ruleId": "no-implicit-this",
     "line": 3,
     "column": 40,
-    "createdDate": 1622703600000,
-    "warnDate": 1622505600000,
-    "errorDate": 1623110400000
+    "createdDate": 1609459200000,
+    "warnDate": 1619827200000,
+    "errorDate": 1620604800000
   },
   {
     "engine": "ember-template-lint",
@@ -25,9 +25,9 @@
     "ruleId": "no-action",
     "line": 4,
     "column": 12,
-    "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "createdDate": 1609459200000,
+    "warnDate": 1612137600000,
+    "errorDate": 1614556800000
   },
   {
     "engine": "ember-template-lint",
@@ -35,9 +35,9 @@
     "ruleId": "no-implicit-this",
     "line": 4,
     "column": 21,
-    "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "createdDate": 1609459200000,
+    "warnDate": 1612137600000,
+    "errorDate": 1614556800000
   },
   {
     "engine": "ember-template-lint",
@@ -45,9 +45,9 @@
     "ruleId": "no-implicit-this",
     "line": 1,
     "column": 37,
-    "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "createdDate": 1609459200000,
+    "warnDate": 1612137600000,
+    "errorDate": 1614556800000
   },
   {
     "engine": "ember-template-lint",
@@ -55,9 +55,19 @@
     "ruleId": "no-implicit-this",
     "line": 1,
     "column": 69,
-    "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "createdDate": 1609459200000,
+    "warnDate": 1612137600000,
+    "errorDate": 1614556800000
+  },
+  {
+    "engine": "ember-template-lint",
+    "filePath": "addon/templates/components/button-toggle.hbs",
+    "ruleId": "no-implicit-this",
+    "line": 2,
+    "column": 7,
+    "createdDate": 1619827200000,
+    "warnDate": 1625097600000,
+    "errorDate": 1625875200000
   },
   {
     "engine": "ember-template-lint",
@@ -65,8 +75,8 @@
     "ruleId": "no-implicit-this",
     "line": 23,
     "column": 25,
-    "createdDate": 1622703600000,
-    "warnDate": 1625295600000,
-    "errorDate": 1627887600000
+    "createdDate": 1609459200000,
+    "warnDate": 1612137600000,
+    "errorDate": 1614556800000
   }
 ]
