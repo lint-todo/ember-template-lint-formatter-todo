@@ -1,6 +1,6 @@
 {
   "name": "@scalvert/ember-template-lint-formatter-todo",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An Ember Template Lint formatter for todos",
   "repository": {
     "type": "git",
