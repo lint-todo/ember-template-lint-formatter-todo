@@ -1,7 +1,7 @@
 const colors = require('colors/safe');
 const Table = require('cli-table3');
 const {
-  readTodosSync,
+  readTodoData,
   isExpired,
   getDatePart,
   differenceInDays,
@@ -17,7 +17,7 @@ class TodoSummaryFormatter {
   print(
     results,
     todoInfo,
-    todos = this._readTodos(this.options.workingDir),
+    todos = readTodoData(this.options.workingDir),
     today = getDatePart()
   ) {
     let sorted = todos
@@ -30,8 +30,8 @@ class TodoSummaryFormatter {
           filePath: todo.filePath,
           dueIn: differenceInDays(today, new Date(todo.errorDate)),
           date: format(todo.errorDate),
-          isError: isExpired(todo.errorDate),
-          isWarn: isExpired(todo.warnDate),
+          isError: isExpired(todo.errorDate, today.getTime()),
+          isWarn: isExpired(todo.warnDate, today.getTime()),
         };
       });
 
@@ -67,10 +67,6 @@ class TodoSummaryFormatter {
 
       this.console.log(table.toString());
     }
-  }
-
-  _readTodos(baseDir) {
-    return [...readTodosSync(baseDir).values()];
   }
 }
 
