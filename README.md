@@ -5,11 +5,11 @@
 ## Install
 
 ```shell
-npm i @scalvert/ember-template-lint-formatter-todo
+npm i @scalvert/ember-template-lint-formatter-todo --save-dev
 
 # or
 
-yarn add @scalvert/ember-template-lint-formatter-todo
+yarn add @scalvert/ember-template-lint-formatter-todo --dev
 ```
 
 ## Usage
