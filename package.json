@@ -24,6 +24,9 @@
     "release-it": "^14.2.1",
     "release-it-lerna-changelog": "^3.1.0"
   },
+  "peerDependencies": {
+    "ember-template-lint": "~3.11.0"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
