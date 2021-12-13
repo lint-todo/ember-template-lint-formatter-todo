@@ -1,15 +1,16 @@
 const colors = require('colors/safe');
-const Table = require('cli-table3');
+const columnify = require('columnify');
 const {
   readTodoData,
   isExpired,
   getDatePart,
   differenceInDays,
   format,
-} = require('@ember-template-lint/todo-utils');
+} = require('@lint-todo/utils');
 
 class TodoSummaryFormatter {
   constructor(options = {}) {
+    debugger;
     this.options = options;
     this.console = options.console || console;
   }
@@ -17,9 +18,12 @@ class TodoSummaryFormatter {
   print(
     results,
     todoInfo,
-    todos = readTodoData(this.options.workingDir),
+    todos = readTodoData(this.options.workingDir).filter(
+      (todo) => todo.engine === 'ember-template-lint'
+    ),
     today = getDatePart()
   ) {
+    debugger;
     let sorted = todos
       .sort((first, second) => {
         return first.errorDate - second.errorDate;
@@ -35,23 +39,16 @@ class TodoSummaryFormatter {
         };
       });
 
-    this.console.log(`Lint Todos (${sorted.length} found)`);
+    this.console.log(
+      `Lint Todos (${sorted.length} found, ${
+        sorted.filter((todo) => todo.isError).length
+      } past their due date)`
+    );
 
     if (sorted.length > 0) {
       this.console.log('');
-      this.console.log(
-        `${
-          sorted.filter((todo) => todo.isError).length
-        } todos are currently past their due date`
-      );
 
-      let table = new Table({
-        head: ['RuleID', 'File Path', 'Due Date', 'Due in'],
-        style: {
-          head: ['brightBlue'],
-          border: ['gray'],
-        },
-      });
+      let data = [];
 
       for (let todo of sorted) {
         let dueInDays = `${todo.dueIn} days`;
@@ -62,10 +59,41 @@ class TodoSummaryFormatter {
           dueInDays = colors.yellow(dueInDays);
         }
 
-        table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);
+        data.push({
+          ruleId: todo.ruleId,
+          filePath: todo.filePath,
+          date: todo.date,
+          dueIn: dueInDays,
+        });
       }
 
-      this.console.log(table.toString());
+      this.console.log(
+        columnify(data, {
+          config: {
+            ruleId: {
+              headingTransform() {
+                return colors.underline('Rule ID');
+              },
+            },
+            filePath: {
+              headingTransform() {
+                return colors.underline('File Path');
+              },
+            },
+            date: {
+              headingTransform() {
+                return colors.underline('Due Date');
+              },
+            },
+            dueIn: {
+              headingTransform() {
+                return colors.underline('Due in');
+              },
+              align: 'right',
+            },
+          },
+        })
+      );
     }
   }
 }

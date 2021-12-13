@@ -13,9 +13,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ember-template-lint/todo-utils": "^10.0.0",
-    "cli-table3": "^0.6.0",
+    "@lint-todo/utils": "^11.0.0",
     "colors": "^1.4.0",
+    "columnify": "^1.5.4",
     "strip-ansi": "6"
   },
   "devDependencies": {
