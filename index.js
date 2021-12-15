@@ -8,6 +8,12 @@ const {
   format,
 } = require('@lint-todo/utils');
 
+function getRuleId(rule) {
+  const indexOfSeparator = rule.indexOf(':') + 1;
+
+  return rule.substring(0, indexOfSeparator - 1);
+}
+
 class TodoSummaryFormatter {
   constructor(options = {}) {
     this.options = options;
@@ -36,6 +42,13 @@ class TodoSummaryFormatter {
           isWarn: isExpired(todo.warnDate, today.getTime()),
         };
       });
+
+    // a rule option has been passed to the CLI, meaning we want to restrict the output to just that rule
+    if (this.options.rule) {
+      let ruleId = getRuleId(this.options.rule);
+
+      sorted = sorted.filter((todo) => todo.ruleId === ruleId);
+    }
 
     this.console.log(
       `Lint Todos (${sorted.length} found, ${
@@ -75,5 +88,7 @@ class TodoSummaryFormatter {
     }
   }
 }
+
+TodoSummaryFormatter.getRuleId = getRuleId;
 
 module.exports = TodoSummaryFormatter;
