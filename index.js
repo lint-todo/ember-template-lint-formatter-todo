@@ -1,4 +1,4 @@
-const colors = require('colors/safe');
+const chalk = require('chalk');
 const columnify = require('columnify');
 const {
   readTodoData,
@@ -10,7 +10,6 @@ const {
 
 class TodoSummaryFormatter {
   constructor(options = {}) {
-    debugger;
     this.options = options;
     this.console = options.console || console;
   }
@@ -18,12 +17,11 @@ class TodoSummaryFormatter {
   print(
     results,
     todoInfo,
-    todos = readTodoData(this.options.workingDir).filter(
-      (todo) => todo.engine === 'ember-template-lint'
-    ),
+    todos = readTodoData(this.options.workingDir, {
+      engine: 'ember-template-lint',
+    }),
     today = getDatePart()
   ) {
-    debugger;
     let sorted = todos
       .sort((first, second) => {
         return first.errorDate - second.errorDate;
@@ -42,7 +40,7 @@ class TodoSummaryFormatter {
     this.console.log(
       `Lint Todos (${sorted.length} found, ${
         sorted.filter((todo) => todo.isError).length
-      } past their due date)`
+      } overdue)`
     );
 
     if (sorted.length > 0) {
@@ -51,47 +49,27 @@ class TodoSummaryFormatter {
       let data = [];
 
       for (let todo of sorted) {
-        let dueInDays = `${todo.dueIn} days`;
+        let dueInDays = `Due in ${todo.dueIn} days`;
 
         if (todo.isError) {
-          dueInDays = colors.red(dueInDays);
+          dueInDays = chalk.red(`Overdue ${Math.abs(todo.dueIn)} days`);
         } else if (todo.isWarn) {
-          dueInDays = colors.yellow(dueInDays);
+          dueInDays = chalk.yellow(dueInDays);
+        } else {
+          dueInDays = chalk.blueBright(dueInDays);
         }
 
         data.push({
-          ruleId: todo.ruleId,
+          dueInDays,
+          date: chalk.dim(todo.date),
           filePath: todo.filePath,
-          date: todo.date,
-          dueIn: dueInDays,
+          ruleId: chalk.dim(todo.ruleId),
         });
       }
 
       this.console.log(
         columnify(data, {
-          config: {
-            ruleId: {
-              headingTransform() {
-                return colors.underline('Rule ID');
-              },
-            },
-            filePath: {
-              headingTransform() {
-                return colors.underline('File Path');
-              },
-            },
-            date: {
-              headingTransform() {
-                return colors.underline('Due Date');
-              },
-            },
-            dueIn: {
-              headingTransform() {
-                return colors.underline('Due in');
-              },
-              align: 'right',
-            },
-          },
+          showHeaders: false,
         })
       );
     }

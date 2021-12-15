@@ -484,10 +484,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lint-todo/utils@^11.0.0":
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/@lint-todo/utils/-/utils-11.0.0.tgz#adb6f0ba280a45bff2449d548727cbff35714db7"
-  integrity sha512-FwAREUQ0ncD3XDujs34183WjzOeX07KrRwi2AkkIJT2irrTkBPyE9FLs2sjjh+Lnj2OB1d+fDN4BWi9r2Nnt+w==
+"@lint-todo/utils@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@lint-todo/utils/-/utils-12.0.0.tgz#625ae5aa9b93f60a7567a515265af2704bf426a6"
+  integrity sha512-MGIDlAwHS31K26N/Fpt15QopnWSALP8uzCRyKXOpm0PoBuCof6a443wJGLPQlPcqPZUMdf4SjYUgEmleMv3REw==
   dependencies:
     "@types/eslint" "^7.2.13"
     fs-extra "^9.1.0"
@@ -1199,9 +1199,9 @@ camelcase@^6.2.0:
   integrity sha512-c7wVvbw3f37nuobQNtgsgG9POC9qMbNuMQmTCqZv23b6MIz0fcYpBiOlv9gEN/hdLdnZTDQhg6e9Dq5M1vKvfg==
 
 caniuse-lite@^1.0.30001219:
-  version "1.0.30001234"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001234.tgz#8fc2e709e3b0679d7af7f073a1c661155c39b975"
-  integrity sha512-a3gjUVKkmwLdNysa1xkUAwN2VfJUJyVW47rsi3aCbkRCtbHAfo+rOsCqVw29G6coQ8gzAPb5XBXwiGHwme3isA==
+  version "1.0.30001286"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001286.tgz"
+  integrity sha512-zaEMRH6xg8ESMi2eQ3R4eZ5qw/hJiVsO/HlLwniIwErij0JDr9P+8V4dtx1l+kLq6j3yy8l8W4fst1lBnat5wQ==
 
 chalk@4.1.1, chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.1:
   version "4.1.1"
@@ -1377,11 +1377,6 @@ colorette@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
   integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
-
-colors@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
-  integrity sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
 
 columnify@^1.5.4:
   version "1.5.4"

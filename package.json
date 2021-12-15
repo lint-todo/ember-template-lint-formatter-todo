@@ -13,8 +13,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@lint-todo/utils": "^11.0.0",
-    "colors": "^1.4.0",
+    "@lint-todo/utils": "^12.0.0",
+    "chalk": "^4.0.0",
     "columnify": "^1.5.4",
     "strip-ansi": "6"
   },
