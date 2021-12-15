@@ -46,12 +46,12 @@ describe('Todo Formatter', () => {
     expect(mockConsole.toString()).toMatchInlineSnapshot(`
 "Lint Todos (8 found, 6 overdue)
 
-Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-action
+Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-action       
 Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-implicit-this
 Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-implicit-this
 Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-implicit-this
 Overdue 65 days 2021-03-01 addon/templates/components/truncate-multiline.hbs no-implicit-this
-Overdue 25 days 2021-04-10 addon/templates/just-yield.hbs                    no-yield-only
+Overdue 25 days 2021-04-10 addon/templates/just-yield.hbs                    no-yield-only   
 Due in 5 days   2021-05-10 addon/templates/components/button-toggle.hbs      no-implicit-this
 Due in 66 days  2021-07-10 addon/templates/components/button-toggle.hbs      no-implicit-this"
 `);
