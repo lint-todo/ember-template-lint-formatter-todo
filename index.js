@@ -1,12 +1,12 @@
-const colors = require('colors/safe');
-const Table = require('cli-table3');
+const chalk = require('chalk');
+const columnify = require('columnify');
 const {
   readTodoData,
   isExpired,
   getDatePart,
   differenceInDays,
   format,
-} = require('@ember-template-lint/todo-utils');
+} = require('@lint-todo/utils');
 
 class TodoSummaryFormatter {
   constructor(options = {}) {
@@ -17,7 +17,9 @@ class TodoSummaryFormatter {
   print(
     results,
     todoInfo,
-    todos = readTodoData(this.options.workingDir),
+    todos = readTodoData(this.options.workingDir, {
+      engine: 'ember-template-lint',
+    }),
     today = getDatePart()
   ) {
     let sorted = todos
@@ -35,37 +37,41 @@ class TodoSummaryFormatter {
         };
       });
 
-    this.console.log(`Lint Todos (${sorted.length} found)`);
+    this.console.log(
+      `Lint Todos (${sorted.length} found, ${
+        sorted.filter((todo) => todo.isError).length
+      } overdue)`
+    );
 
     if (sorted.length > 0) {
       this.console.log('');
-      this.console.log(
-        `${
-          sorted.filter((todo) => todo.isError).length
-        } todos are currently past their due date`
-      );
 
-      let table = new Table({
-        head: ['RuleID', 'File Path', 'Due Date', 'Due in'],
-        style: {
-          head: ['brightBlue'],
-          border: ['gray'],
-        },
-      });
+      let data = [];
 
       for (let todo of sorted) {
-        let dueInDays = `${todo.dueIn} days`;
+        let dueInDays = `Due in ${todo.dueIn} days`;
 
         if (todo.isError) {
-          dueInDays = colors.red(dueInDays);
+          dueInDays = chalk.red(`Overdue ${Math.abs(todo.dueIn)} days`);
         } else if (todo.isWarn) {
-          dueInDays = colors.yellow(dueInDays);
+          dueInDays = chalk.yellow(dueInDays);
+        } else {
+          dueInDays = chalk.blueBright(dueInDays);
         }
 
-        table.push([todo.ruleId, todo.filePath, todo.date, dueInDays]);
+        data.push({
+          dueInDays,
+          date: chalk.dim(todo.date),
+          filePath: todo.filePath,
+          ruleId: chalk.dim(todo.ruleId),
+        });
       }
 
-      this.console.log(table.toString());
+      this.console.log(
+        columnify(data, {
+          showHeaders: false,
+        })
+      );
     }
   }
 }
