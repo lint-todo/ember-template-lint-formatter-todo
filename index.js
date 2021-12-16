@@ -11,7 +11,7 @@ const {
 function getRuleId(rule) {
   const indexOfSeparator = rule.indexOf(':') + 1;
 
-  return rule.substring(0, indexOfSeparator - 1);
+  return rule.slice(0, Math.max(0, indexOfSeparator - 1));
 }
 
 class TodoSummaryFormatter {
