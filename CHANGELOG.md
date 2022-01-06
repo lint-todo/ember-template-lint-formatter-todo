@@ -1,3 +1,12 @@
+## v1.0.1 (2022-01-06)
+
+#### :bug: Bug Fix
+* [#6](https://github.com/lint-todo/ember-template-lint-formatter-todo/pull/6) Add peerDependency on ember-template-lint ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.0 (2021-12-16)
 
 #### :rocket: Enhancement
