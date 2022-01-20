@@ -1,9 +1,10 @@
 const path = require('path');
-const { readJsonSync } = require('fs-extra');
-const { getDatePart } = require('@lint-todo/utils');
+const { getDatePart, readTodoData } = require('@lint-todo/utils');
 const TodoSummaryFormatter = require('./');
 
-let todos = readJsonSync(path.resolve('./__tests__/__fixtures__/todos.json'));
+let todos = readTodoData(path.resolve(__dirname, '__tests__', '__fixtures__'), {
+  engine: 'ember-template-lint',
+});
 let formatter = new TodoSummaryFormatter();
 let today = getDatePart(new Date('2021-05-05'));
 
