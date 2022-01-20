@@ -1,3 +1,12 @@
+## v1.0.2 (2022-01-20)
+
+#### :bug: Bug Fix
+* [#31](https://github.com/lint-todo/ember-template-lint-formatter-todo/pull/31) Fixes error when attempting to sort a todo Set ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.1 (2022-01-06)
 
 #### :bug: Bug Fix
