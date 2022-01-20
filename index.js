@@ -28,7 +28,7 @@ class TodoSummaryFormatter {
     }),
     today = getDatePart()
   ) {
-    let sorted = todos
+    let sorted = [...todos]
       .sort((first, second) => {
         return first.errorDate - second.errorDate;
       })

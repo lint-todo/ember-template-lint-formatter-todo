@@ -1,6 +1,5 @@
 const path = require("path");
 const stripAnsi = require("strip-ansi");
-const { readJsonSync } = require("fs-extra");
 const { getDatePart } = require("@lint-todo/utils");
 const TodoSummaryFormatter = require("../index");
 
@@ -39,18 +38,16 @@ describe("Todo Formatter", () => {
 
   it("can format output from results", () => {
     let mockConsole = new MockConsole();
-    let todos = readJsonSync(
-      path.resolve("./__tests__/__fixtures__/todos.json")
-    );
     let formatter = new TodoSummaryFormatter({
       console: mockConsole,
+      workingDir: path.join(__dirname, "__fixtures__"),
     });
     let today = getDatePart(new Date("2021-05-05"));
 
-    formatter.print({}, {}, todos, today);
+    formatter.print({}, {}, undefined, today);
 
     expect(mockConsole.lines).toMatchInlineSnapshot(`
-      Array [
+      [
         "Lint Todos (8 found, 6 overdue)",
         "",
         "Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-action       
@@ -67,19 +64,17 @@ describe("Todo Formatter", () => {
 
   it("can format output from results for a single rule", () => {
     let mockConsole = new MockConsole();
-    let todos = readJsonSync(
-      path.resolve("./__tests__/__fixtures__/todos.json")
-    );
     let formatter = new TodoSummaryFormatter({
       console: mockConsole,
+      workingDir: path.join(__dirname, "__fixtures__"),
       rule: "no-implicit-this:error",
     });
     let today = getDatePart(new Date("2021-05-05"));
 
-    formatter.print({}, {}, todos, today);
+    formatter.print({}, {}, undefined, today);
 
     expect(mockConsole.lines).toMatchInlineSnapshot(`
-      Array [
+      [
         "Lint Todos (6 found, 4 overdue)",
         "",
         "Overdue 65 days 2021-03-01 addon/templates/components/button-toggle.hbs      no-implicit-this
