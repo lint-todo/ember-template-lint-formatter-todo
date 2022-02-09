@@ -1,3 +1,12 @@
+## v1.1.0 (2022-02-09)
+
+#### :rocket: Enhancement
+* [#39](https://github.com/lint-todo/ember-template-lint-formatter-todo/pull/39) Adding totals to the bottom of the list in addition to the top ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.2 (2022-01-20)
 
 #### :bug: Bug Fix
