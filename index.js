@@ -43,6 +43,14 @@ class TodoSummaryFormatter {
         };
       });
 
+    let printTotal = () => {
+      this.console.log(
+        `Lint Todos (${sorted.length} found, ${
+          sorted.filter((todo) => todo.isError).length
+        } overdue)`
+      );
+    };
+
     // a rule option has been passed to the CLI, meaning we want to restrict the output to just that rule
     if (this.options.rule) {
       let ruleId = getRuleId(this.options.rule);
@@ -50,11 +58,7 @@ class TodoSummaryFormatter {
       sorted = sorted.filter((todo) => todo.ruleId === ruleId);
     }
 
-    this.console.log(
-      `Lint Todos (${sorted.length} found, ${
-        sorted.filter((todo) => todo.isError).length
-      } overdue)`
-    );
+    printTotal();
 
     if (sorted.length > 0) {
       this.console.log('');
@@ -85,6 +89,9 @@ class TodoSummaryFormatter {
           showHeaders: false,
         })
       );
+      this.console.log('');
+
+      printTotal();
     }
   }
 }
