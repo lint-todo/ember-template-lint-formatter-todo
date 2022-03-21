@@ -1,3 +1,16 @@
+
+## v2.0.0 (2022-03-21)
+
+#### :boom: Breaking Change
+* [#49](https://github.com/lint-todo/ember-template-lint-formatter-todo/pull/49) Convert to ESM with multi-target publishing. Convert Jest to Vitest. ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* [#51](https://github.com/lint-todo/ember-template-lint-formatter-todo/pull/51) Removes fake output generator ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.1.0 (2022-02-09)
 
 #### :rocket: Enhancement
