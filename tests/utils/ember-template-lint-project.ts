@@ -1,5 +1,5 @@
-import { join } from 'node:path';
-import { createRequire } from 'node:module';
+import { join } from 'path';
+import { createRequire } from 'module';
 import { BinTesterProject } from '@scalvert/bin-tester';
 import { DaysToDecay, DaysToDecayByRule } from '@lint-todo/utils';
 

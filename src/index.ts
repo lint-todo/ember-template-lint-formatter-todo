@@ -7,42 +7,13 @@ import {
   differenceInDays,
   format,
   TodoData,
-  TodoConfig,
   todoStorageFileExists,
 } from '@lint-todo/utils';
-
-enum Severity {
-  todo = -1,
-  warning = 1,
-  error = 2,
-}
 
 interface EmberTemplateLintOptions {
   hasResultData: true;
   workingDirectory: string;
   rule: string;
-}
-
-interface EmberTemplateLintTodoInfo {
-  added: number;
-  removed: number;
-  todoConfig: TodoConfig;
-}
-
-interface EmberTemplateLintResults {
-  files: Record<string, EmberTemplateLintResult[]>;
-}
-
-interface EmberTemplateLintResult {
-  rule: string;
-  severity: Severity;
-  filePath: string;
-  line: number;
-  column: number;
-  endLine: number;
-  endColumn: number;
-  source: string;
-  message: string;
 }
 
 function getRuleId(rule: string) {

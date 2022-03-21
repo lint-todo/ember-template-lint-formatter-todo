@@ -21,13 +21,16 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'unicorn/prefer-node-protocol': 'off',
+    'unicorn/import-style': 'off',
   },
   overrides: [
     {
       files: ['tests/**/*.ts'],
     },
     {
-      files: ['_generate-fake-output.cjs'],
+      files: ['**/*.cjs'],
       parserOptions: {
         sourceType: 'script',
       },

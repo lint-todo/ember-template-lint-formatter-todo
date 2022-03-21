@@ -41,6 +41,7 @@
     "@types/columnify": "^1.5.1",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
+    "date-fns": "^2.28.0",
     "ember-template-lint": "^4.3.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
