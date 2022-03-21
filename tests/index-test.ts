@@ -85,6 +85,50 @@ describe('Todo Formatter', () => {
     ]);
   });
 
+  it('can format output from todos by ruleId', async function () {
+    await project.setConfig({
+      rules: {
+        'no-bare-strings': true,
+        'no-html-comments': true,
+      },
+    });
+
+    await project.writeJSON({
+      app: {
+        templates: {
+          'application.hbs':
+            '<div>Bare strings are bad...</div><span>Very bad</span><!-- bad comment -->',
+        },
+      },
+    });
+
+    const result = await runBin(
+      '--update-todo',
+      '--todo-days-to-error',
+      '10',
+      '--rule',
+      'no-bare-strings:error',
+      '--no-config-path',
+      '--no-inline-config',
+      {
+        env: {
+          FORCE_COLOR: '0',
+        },
+      }
+    );
+    const expiry = format(addDays(getDatePart(), 10));
+
+    expect(result.exitCode).toEqual(0);
+    expect(result.stdout.split('\n')).toEqual([
+      'Lint Todos (2 found, 0 overdue)',
+      '',
+      `Due in 10 days ${expiry} app/templates/application.hbs no-bare-strings`,
+      `Due in 10 days ${expiry} app/templates/application.hbs no-bare-strings`,
+      '',
+      'Lint Todos (2 found, 0 overdue)',
+    ]);
+  });
+
   it('can format output from todos that are outdated', async function () {
     await project.setConfig({
       rules: {
