@@ -1,6 +1,6 @@
 const path = require('path');
 const { getDatePart, readTodoData } = require('@lint-todo/utils');
-const TodoSummaryFormatter = require('./');
+const TodoSummaryFormatter = require('./dist');
 
 let todos = readTodoData(path.resolve(__dirname, '__tests__', '__fixtures__'), {
   engine: 'ember-template-lint',

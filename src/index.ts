@@ -1,50 +1,68 @@
-const chalk = require('chalk');
-const columnify = require('columnify');
-const {
+import chalk from 'chalk';
+import columnify from 'columnify';
+import {
   readTodoData,
   isExpired,
   getDatePart,
   differenceInDays,
   format,
-} = require('@lint-todo/utils');
+  TodoData,
+  todoStorageFileExists,
+} from '@lint-todo/utils';
 
-function getRuleId(rule) {
+interface EmberTemplateLintOptions {
+  hasResultData: true;
+  workingDirectory: string;
+  rule: string;
+}
+
+function getRuleId(rule: string) {
   const indexOfSeparator = rule.indexOf(':') + 1;
 
   return rule.slice(0, Math.max(0, indexOfSeparator - 1));
 }
 
-class TodoSummaryFormatter {
-  constructor(options = {}) {
+function getDate(date: number | undefined) {
+  return date || getDatePart().getTime();
+}
+
+//@ts-ignore
+export = class TodoSummaryFormatter {
+  options: EmberTemplateLintOptions;
+
+  constructor(options: EmberTemplateLintOptions) {
     this.options = options;
-    this.console = options.console || console;
   }
 
-  print(
-    results,
-    todoInfo,
-    todos = readTodoData(this.options.workingDir, {
-      engine: 'ember-template-lint',
-    }),
-    today = getDatePart()
-  ) {
+  format() {
+    const output = [];
+    const today = getDatePart();
+    let todos = new Set<TodoData>();
+
+    if (todoStorageFileExists(this.options.workingDirectory)) {
+      todos = readTodoData(this.options.workingDirectory, {
+        engine: 'ember-template-lint',
+        filePath: '',
+      });
+    }
+
     let sorted = [...todos]
-      .sort((first, second) => {
-        return first.errorDate - second.errorDate;
+      .sort((first: TodoData, second: TodoData) => {
+        return getDate(first.errorDate) - getDate(second.errorDate);
       })
       .map((todo) => {
         return {
           ruleId: todo.ruleId,
           filePath: todo.filePath,
-          dueIn: differenceInDays(today, new Date(todo.errorDate)),
-          date: format(todo.errorDate),
+          dueIn: differenceInDays(today, new Date(getDate(todo.errorDate))),
+          date: format(getDate(todo.errorDate)),
           isError: isExpired(todo.errorDate, today.getTime()),
           isWarn: isExpired(todo.warnDate, today.getTime()),
         };
       });
 
-    let printTotal = () => {
-      this.console.log(
+    const printTotal = () => {
+      output.push(
         `Lint Todos (${sorted.length} found, ${
           sorted.filter((todo) => todo.isError).length
         } overdue)`
@@ -53,7 +71,7 @@ class TodoSummaryFormatter {
 
     // a rule option has been passed to the CLI, meaning we want to restrict the output to just that rule
     if (this.options.rule) {
-      let ruleId = getRuleId(this.options.rule);
+      const ruleId = getRuleId(this.options.rule);
 
       sorted = sorted.filter((todo) => todo.ruleId === ruleId);
     }
@@ -61,11 +79,11 @@ class TodoSummaryFormatter {
     printTotal();
 
     if (sorted.length > 0) {
-      this.console.log('');
+      output.push('');
 
-      let data = [];
+      const data = [];
 
-      for (let todo of sorted) {
+      for (const todo of sorted) {
         let dueInDays = `Due in ${todo.dueIn} days`;
 
         if (todo.isError) {
@@ -84,18 +102,16 @@ class TodoSummaryFormatter {
         });
       }
 
-      this.console.log(
+      output.push(
         columnify(data, {
           showHeaders: false,
-        })
+        }),
+        ''
       );
-      this.console.log('');
 
       printTotal();
     }
+
+    return output.join('\n');
   }
-}
-
-TodoSummaryFormatter.getRuleId = getRuleId;
-
-module.exports = TodoSummaryFormatter;
+};
