@@ -25,6 +25,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "lint": "eslint .",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build",
     "test": "FORCE_COLOR=1 npm-run-all lint test:*",
     "test:vitest": "vitest run"
@@ -93,6 +94,6 @@
   },
   "volta": {
     "node": "14.19.1",
-    "yarn": "1.22.10"
+    "npm": "8.5.3"
   }
 }
