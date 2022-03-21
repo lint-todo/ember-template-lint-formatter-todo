@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url';
 import { describe, beforeEach, afterEach, it, expect } from 'vitest';
 import { createBinTester } from '@scalvert/bin-tester';
 import { addDays, subDays } from 'date-fns';
+// eslint-disable-next-line node/no-missing-import
 import Project from './utils/ember-template-lint-project';
 import { format, getDatePart } from '@lint-todo/utils';
 

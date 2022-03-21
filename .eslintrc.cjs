@@ -27,7 +27,7 @@ module.exports = {
     'node/no-missing-import': [
       'error',
       {
-        allowedModules: ['@scalvert/bin-tester', './utils/ember-template-lint-project'],
+        allowModules: ['@scalvert/bin-tester'],
       },
     ],
   },
