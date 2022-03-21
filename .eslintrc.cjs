@@ -24,6 +24,12 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'unicorn/prefer-node-protocol': 'off',
     'unicorn/import-style': 'off',
+    'node/no-missing-import': [
+      'error',
+      {
+        allowedModules: ['@scalvert/bin-tester', './utils/ember-template-lint-project'],
+      },
+    ],
   },
   overrides: [
     {
