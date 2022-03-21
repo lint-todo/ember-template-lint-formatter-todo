@@ -24,12 +24,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'unicorn/prefer-node-protocol': 'off',
     'unicorn/import-style': 'off',
-    'node/no-missing-import': [
-      'error',
-      {
-        allowModules: ['@scalvert/bin-tester'],
-      },
-    ],
   },
   overrides: [
     {
