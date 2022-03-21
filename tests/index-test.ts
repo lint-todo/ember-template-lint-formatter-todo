@@ -24,30 +24,30 @@ describe('Todo Formatter', () => {
     teardownProject();
   });
 
-  // it('can format output from no results', async () => {
-  //   await project.setConfig({
-  //     rules: {
-  //       'no-bare-strings': 'error',
-  //     },
-  //   });
-  //   await project.writeJSON({
-  //     app: {
-  //       templates: {
-  //         'application.hbs': '<div></div>',
-  //       },
-  //     },
-  //   });
+  it('can format output from no results', async () => {
+    await project.setConfig({
+      rules: {
+        'no-bare-strings': 'error',
+      },
+    });
+    await project.writeJSON({
+      app: {
+        templates: {
+          'application.hbs': '<div></div>',
+        },
+      },
+    });
 
-  //   await project.setLintTodorc({
-  //     warn: 5,
-  //     error: 10,
-  //   });
+    await project.setLintTodorc({
+      warn: 5,
+      error: 10,
+    });
 
-  //   const result = await runBin();
+    const result = await runBin();
 
-  //   expect(result.exitCode).toEqual(0);
-  //   expect(result.stdout).toMatchInlineSnapshot('"Lint Todos (0 found, 0 overdue)"');
-  // });
+    expect(result.exitCode).toEqual(0);
+    expect(result.stdout).toMatchInlineSnapshot('"Lint Todos (0 found, 0 overdue)"');
+  });
 
   it('can format output from todos', async function () {
     await project.setConfig({
