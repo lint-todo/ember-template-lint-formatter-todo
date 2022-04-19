@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
-    "@scalvert/bin-tester": "^0.3.0",
+    "@scalvert/bin-tester": "^2.0.0",
     "@types/columnify": "^1.5.1",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
