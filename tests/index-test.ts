@@ -13,7 +13,7 @@ describe('Todo Formatter', () => {
       new URL('../node_modules/ember-template-lint/bin/ember-template-lint.js', import.meta.url)
     ),
     staticArgs: ['.', '--format', fileURLToPath(new URL('..', import.meta.url))],
-    createProject: () => new Project(),
+    createProject: async () => new Project(),
   });
 
   beforeEach(async () => {
@@ -30,7 +30,7 @@ describe('Todo Formatter', () => {
         'no-bare-strings': 'error',
       },
     });
-    await project.writeJSON({
+    await project.write({
       app: {
         templates: {
           'application.hbs': '<div></div>',
@@ -57,7 +57,7 @@ describe('Todo Formatter', () => {
       },
     });
 
-    await project.writeJSON({
+    await project.write({
       app: {
         templates: {
           'application.hbs':
@@ -93,7 +93,7 @@ describe('Todo Formatter', () => {
       },
     });
 
-    await project.writeJSON({
+    await project.write({
       app: {
         templates: {
           'application.hbs':
@@ -137,7 +137,7 @@ describe('Todo Formatter', () => {
       },
     });
 
-    await project.writeJSON({
+    await project.write({
       app: {
         templates: {
           'application.hbs':

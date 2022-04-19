@@ -73,7 +73,7 @@ export default class EmberTemplateLintProject extends BinTesterProject {
       todoConfig['ember-template-lint'].daysToDecayByRule = daysToDecayByRule;
     }
 
-    return this.writeJSON({
+    return this.write({
       // eslint-disable-next-line unicorn/no-null
       '.lint-todorc.js': `module.exports = ${JSON.stringify(todoConfig, null, 2)}`,
     });
