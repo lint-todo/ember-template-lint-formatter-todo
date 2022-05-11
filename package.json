@@ -31,7 +31,7 @@
     "test:vitest": "vitest run"
   },
   "dependencies": {
-    "@lint-todo/utils": "^12.0.1",
+    "@lint-todo/utils": "^13.0.2",
     "chalk": "^4.0.0",
     "columnify": "^1.6.0",
     "strip-ansi": "6"
@@ -56,7 +56,7 @@
     "tsup": "^5.12.1",
     "typescript": "^4.6.2",
     "vite": "^2.8.6",
-    "vitest": "^0.7.6"
+    "vitest": "^0.12.4"
   },
   "peerDependencies": {
     "ember-template-lint": "^4.3.0"
